@@ -5,7 +5,7 @@ import pyautogui
 
 from main import map_find
 from main import keybdclick
-from main import locateclick,Dog
+from main import locateclick,Dog,random,Coffee,Noodle
 
 def is_admin():
     try:
@@ -15,7 +15,8 @@ def is_admin():
 
 if is_admin():
     time.sleep(5)
-    Dog()
+    Coffee()
+
 
     # 主程序写在这里
 else:

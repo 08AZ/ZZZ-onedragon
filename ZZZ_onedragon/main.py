@@ -104,7 +104,7 @@ def locateclick(png_road:str):
                 break
         except Exception as e:
             time.sleep(0.5)
-            logging.info("wait_loading")
+            logging.info("wait_loading or cont find")
 
 def is_admin():
     try:
@@ -140,7 +140,7 @@ def locate_until(pngtolocate:str):
         except Exception:
             time.sleep(1)
 # 录像店营业
-def random(person_png:str='Anbi.png'):
+def random(person_png:str='18_random.png'):
 #代理人默认为安比
     map_find('random.png', 'staff.png')
     locate_until('q.png')
@@ -149,14 +149,31 @@ def random(person_png:str='Anbi.png'):
     keybdclick(S, 0.1)
     keybdclick(D, 0.13)
     keybdclick(F)
-    locateclick('exit_film.png')
+    time.sleep(5)
+    try:
+        pyautogui.locateCenterOnScreen('cancel.png')
+        locateclick('cancel.png')
+    except:
+        time.sleep(0.5)
     locateclick('random_choose.png')
     locateclick(person_png)
     locateclick('enter.png')
     locateclick('film.png')
-    locateclick('enter.png')
-    locateclick('enter.png')
+    time.sleep(2)
+    try:
+        pyautogui.locateCenterOnScreen('film_up.png')
+        locateclick('film_up.png')
+    except:
+        click(623 * 1920 / screen_width, 261 * 1080 / screen_height)
+        locateclick('Up_random.png')
+        click(846 * 1920 / screen_width, 261 * 1080 / screen_height)
+        locateclick('Up_random.png')
+        click(1053 * 1920 / screen_width, 261 * 1080 / screen_height)
+        locateclick('Up_random.png')
+        locateclick('exit.png')
     locateclick('over_film.png')
+    locateclick('queren.png')
+    locateclick('queren.png')
     locateclick('exit.png')
 def Dog():
     map_find('street.png','dog.png')
@@ -165,19 +182,50 @@ def Dog():
     keybdclick(F)
     locateclick('guaguaka.png')
     Mouse=mouse.Controller()
-    Mouse.position=(821/1920*screen_width,535/1080*screen_height)
+    Mouse.position=(805/1920*screen_width,540/1080*screen_height)
     Mouse.press(Button.left)
     while Mouse.position[0]<=1088/1920*screen_width:
         Mouse.move(10,0)
-    Mouse.position=(821/1920*screen_width,570/1080*screen_height)
+        time.sleep(0.1)
+    Mouse.position=(805/1920*screen_width,570/1080*screen_height)
     while Mouse.position[0]<=1088/1920*screen_width:
         Mouse.move(10,0)
-    Mouse.position=(821/1920*screen_width,602/1080*screen_height)
+        time.sleep(0.1)
+    Mouse.position=(805/1920*screen_width,600/1080*screen_height)
     while Mouse.position[0]<=1088/1920*screen_width:
         Mouse.move(10,0)
+        time.sleep(0.1)
     Mouse.release(Button.left)
-
-
+    locateclick('queren.png')
+    locateclick('exit.png')
+    locateclick('exit.png')
+def Noodle():
+    ##默认白碗草本汤面
+    map_find('street.png','Noodle_shop.png')
+    locate_until('q.png')
+    keybdclick(W, 1)
+    keybdclick(F)
+    locateclick('Noodletoeat.png')
+    locateclick('Deal_Noodle.png')
+    locateclick('queren.png')
+    time.sleep(5)
+    try:
+        pyautogui.locateCenterOnScreen('skip.png')
+        locateclick('skip.png')
+    except:
+        time.sleep(10)
+    locateclick('queren.png')
+def Coffee():
+    map_find('street.png','coffee.png')
+    locate_until('q.png')
+    keybdclick(F)
+    time.sleep(3)
+    locateclick('Coffee_pure.png')
+    locateclick('Deal.png')
+    time.sleep(5)
+    locateclick('skip.png')
+    locateclick('queren.png')
+    locateclick('queren.png')
 MOUSEEVENTF_LEFTDOWN = 0x0002
 MOUSEEVENTF_LEFTUP = 0x0004
 INPUT_MOUSE = 0
@@ -222,8 +270,11 @@ if __name__=='__main__':
             #月卡 locateclick('month_card.png')'''
             time.sleep(10)
             #录像店　以11号为例
-            random('11.png')
+            random()
             #刮刮乐
+            Dog()
+            Noodle()
+            Coffee()
 
 
 
